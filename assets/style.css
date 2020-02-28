@@ -1,0 +1,88 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: antiquewhite;
+}
+
+#preview-1, #toggle-1, #content-1, #content-2, #content-3 {
+    display: none;
+}
+
+.container {
+    background-image: url('../images/wall1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed, scroll;
+    -webkit-background-size: cover;
+    text-align: center;
+    height: auto;
+    width: auto;
+    transition: .5s ease-in all;
+}
+
+#toggle-1:checked+.container {
+    background-image: url('../images/dark.jpg');
+    color: white;
+    font-family: "Franklin Gothic Heavy";
+}
+
+/*knop voor veranderen van staat*/
+#label-1 {
+    padding: 50px;
+}
+
+.language_container {
+    position: fixed;
+    top: 10%;
+    margin: 0 0 0 10px;
+}
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+}
+
+.language_image {
+    width: 450px;
+    height: 600px;
+    -webkit-filter: drop-shadow(5px 5px 5px #151513);
+    filter: drop-shadow(5px 5px 5px #151513);
+}
+
+#french:checked ~ #content-1 {
+    display: block;
+}
+#greek:checked ~ #content-2 {
+    display: block
+}
+#english:checked ~ #content-3 {
+    display: block;
+}
+
+.image_container {
+    position: relative;
+    margin-top: 5%;
+}
+
+.image {
+    height: 500px;
+    width: 500px;
+}
+
+div.container > label:hover {
+    animation: ease-in-out;
+}
+
+@keyframes bounce {
+    0%,20%,60%,100% {
+        transform: translateY(0);
+}40% {
+     transform: translateY(-30px);
+ }80% {
+      transform: translateY(-20px);
+  }
+}
+

@@ -74,16 +74,19 @@ body {
 }
 
 [name=frenchFlag],[name=greekFlag],[name=englishFlag], .container > h1 {
-    background: rgba(54, 164, 170, 0.3);
+    background: rgba(247, 231, 187, 0.3);
 }
 
 [name=frenchFlag],[name=greekFlag],[name=englishFlag] {
     padding-top: 10px;
-    border-top: black solid 2px;
 }
 
 .container > h1 {
-    border-bottom: black solid 2px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.image_container > span {
+
 }
 
 #toggle-1:checked+.container {
@@ -91,6 +94,10 @@ body {
     color: white;
     font-family: "Franklin Gothic Heavy";
 }
+
+/*#toggle-1:checked [name=frenchFlag],[name=greekFlag],[name=englishFlag], .container > h1 {
+    background: rgba(247, 231, 187, 0.3);
+}*/
 
 .language_image {
     width: 450px;

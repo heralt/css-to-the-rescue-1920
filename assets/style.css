@@ -54,6 +54,12 @@ body {
     }
 }
 
+#label-1
+{
+    background: url('../images/dayNightLogo.png') no-repeat top center;
+    padding-left: 20cm;
+}
+
 #label-1 {
     grid-area: mode;
     padding: 50px;

@@ -7,6 +7,11 @@ body {
     background-color: antiquewhite;
 }
 
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+}
+
 #preview-1, #toggle-1, #content-1, #content-2, #content-3 {
     display: none;
 }
@@ -15,7 +20,7 @@ body {
     background-image: url('../images/wall1.jpg');
     background-repeat: no-repeat;
     background-position: center;
-    background-attachment: fixed, scroll;
+    background-attachment: fixed ,scroll;
     -webkit-background-size: cover;
     text-align: center;
     height: auto;
@@ -23,26 +28,68 @@ body {
     transition: .5s ease-in all;
 }
 
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-rows: repeat(6,auto);
+    grid-template-areas:
+            "mode "
+            "french"
+            "greek"
+            "english"
+            "desc "
+            "content ";
+}
+
+@media screen and (min-width: 760px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4,auto);
+        grid-template-areas:
+                "mode mode mode"
+                "french greek english"
+                "desc desc desc"
+                "content content content";
+    }
+}
+
+#label-1 {
+    grid-area: mode;
+    padding: 50px;
+}
+
+[name=frenchFlag] {
+    grid-area: french;
+}
+[name=greekFlag] {
+    grid-area: greek;
+}
+[name=englishFlag] {
+    grid-area: english;
+}
+
+.container > h1 {
+    grid-area: desc;
+}
+
+[name=frenchFlag],[name=greekFlag],[name=englishFlag], .container > h1 {
+    background: rgba(54, 164, 170, 0.3);
+}
+
+[name=frenchFlag],[name=greekFlag],[name=englishFlag] {
+    padding-top: 10px;
+    border-top: black solid 2px;
+}
+
+.container > h1 {
+    border-bottom: black solid 2px;
+}
+
 #toggle-1:checked+.container {
     background-image: url('../images/dark.jpg');
     color: white;
     font-family: "Franklin Gothic Heavy";
-}
-
-/*knop voor veranderen van staat*/
-#label-1 {
-    padding: 50px;
-}
-
-.language_container {
-    position: fixed;
-    top: 10%;
-    margin: 0 0 0 10px;
-}
-
-[type=radio] {
-    position: absolute;
-    opacity: 0;
 }
 
 .language_image {
@@ -53,13 +100,26 @@ body {
 }
 
 #french:checked ~ #content-1 {
+    /*grid-column: 1/-1;
+    grid-row: 4/5;*/
+    grid-area: content;
     display: block;
+    margin: 20px;
 }
 #greek:checked ~ #content-2 {
-    display: block
-}
-#english:checked ~ #content-3 {
+    /*grid-column: 1/-1;*/
+    /*grid-row: 4/5;*/
+    grid-area: content;
     display: block;
+    margin: 20px;
+}
+
+#english:checked ~ #content-3 {
+    /*grid-column: 1/-1;*/
+    /*grid-row: 4/5;*/
+    grid-area: content;
+    display: block;
+    margin: 20px;
 }
 
 .image_container {
@@ -72,8 +132,8 @@ body {
     width: 500px;
 }
 
-div.container > label:hover {
-    animation: ease-in-out;
+div.container > label > img:hover {
+    animation: bounce 2s;
 }
 
 @keyframes bounce {
@@ -86,3 +146,84 @@ div.container > label:hover {
   }
 }
 
+.container > h1 {
+    transition: all 0.5s;
+}
+
+.container > h1:hover {
+    color: ivory;
+    font-size: 80px;
+}
+
+#content-1 > .image_container > img {
+    transition: all 1s ease;
+}
+
+#content-1 > .image_container > img:hover {
+    width: 1000px;
+    height: 800px;
+}
+
+#content-2 > .image_container > [name=bronze] {
+    animation: grow 10s;
+    animation-iteration-count: infinite;
+}
+
+#content-2 > .image_container > [name=marble] {
+    animation: move 2s;
+    animation-iteration-count: infinite;
+}
+
+#content-2 > .image_container > [name=noArms] {
+    animation: around 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes grow {
+     0% {width: 500px; height: 500px;}
+     25% {width: 500px; height: 550px;}
+     50% {width: 550px; height: 550px;}
+     75% {width: 500px; height: 550px;}
+     100% {width: 500px; height: 500px;}
+ }
+
+@keyframes move {
+    0% {transform: translateX(0)}
+    25% {transform: translateX(-60px)}
+    50% {transform: translateX(60px)}
+    75% {transform: translateX(-60px)}
+    100% {transform: translateX(0)}
+}
+
+@keyframes around {
+    0% {transform: translateX(0) translateY(0); }
+    25% {transform: translateX(-30px) translateY(30px)}
+    50% {transform: translateX(30px) translateY(30px)}
+    75% {transform: translateX(30px) translateY(-30px)}
+    100% {transform: translateX(-30) translateY(-30)}
+}
+
+#content-3 > .image_container > [name=ophelia],[name=army],[name=shalot] {
+    transition: all 1s ease;
+}
+
+#content-3 > .image_container > [name=ophelia]:hover {
+    transform: skewY(25deg);
+}
+
+#content-3 > .image_container > [name=army]:hover {
+    animation: roll 1s infinite;
+}
+
+@keyframes roll  {
+    0% {transform: rotate(0)}
+    25% {transform: rotate(90deg)}
+    50% {transform: rotate(180deg)}
+    75% {transform: rotate(270deg)}
+    100% {transform: rotate(360deg)}
+}
+
+#content-3 > .image_container > [name=shalot]:hover {
+    transform: rotate3d(1, 1, 1, 45deg);
+}
